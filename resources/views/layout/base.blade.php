@@ -25,7 +25,7 @@
     </script>
     @section('header_script') @show
 </head>
-<body style="background-color: #f1f1f1;">
+<body class="bg-light">
 @yield('content')
 @section('scripts')
 @show
