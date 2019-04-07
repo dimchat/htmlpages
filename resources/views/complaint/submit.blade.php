@@ -30,6 +30,9 @@
                     <div class="form-group">
                         <label for="content">投诉内容(必填)</label>
                         <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                        <input type="text" id="reason" name="reason" value="{{$_GET['reason']??''}}" style="display: none;"/>
+                        <input type="text" id="sender" name="sender" value="{{$_GET['sender']??''}}" style="display: none;"/>
+                        <input type="text" id="type" name="type" value="{{$_GET['type']??''}}" style="display: none;"/>
                         <input type="text" id="identifier" name="identifier" value="{{$_GET['identifier']??''}}" style="display: none;"/>
                     </div>
                 </li>

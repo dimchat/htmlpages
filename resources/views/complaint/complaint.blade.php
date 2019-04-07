@@ -9,7 +9,7 @@
         <div class="title1" style="">请选择投诉该账号的原因:</div>
         <div class="list-group list-group-flush">
             @foreach($reasons as $key => $value)
-            <a href="{{route('complaint', ['type'=>$type,'identifier'=>$identifier,'reason'=>urlencode($key)])}}" class="list-group-item list-group-item-action">{{$key}}</a>
+            <a href="{{route('complaint', ['type'=>$type,'identifier'=>$identifier,'reason'=>$key,'sender'=>$sender])}}" class="list-group-item list-group-item-action">{{$key}}</a>
             @endforeach
         </div>
         @endif
@@ -19,7 +19,7 @@
                 <div class="list-group list-group-flush">
                     @foreach(config("complaint.reasons.$reason")['solutions'] as $solution)
                         @if( $solution == 'submit' )
-                        <a href="{{route('complaint.submit.page', ['type'=>$type,'identifier'=>$identifier,'reason'=>$reason])}}" class="list-group-item list-group-item-action">提交给我们进行审核</a>
+                        <a href="{{route('complaint.submit.page', ['sender'=>$sender,'type'=>$type,'identifier'=>$identifier,'reason'=>$reason])}}" class="list-group-item list-group-item-action">提交给我们进行审核</a>
                         @endif
                     @endforeach
                 </div>

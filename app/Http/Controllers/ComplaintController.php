@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ComplaintController extends Controller
@@ -20,8 +19,10 @@ class ComplaintController extends Controller
     public function complaint( Request $request )
     {
         $validator = \Validator::make($request->all(), [
-            'type'=>'required|in:"individual","group"|max:200',
+            'sender'=>'required|max:128',
             'identifier'=>'required|max:128',
+            'type'=>'required|in:"individual","group"|max:200',
+            'reason'=>'in:'.join(',', array_keys(config('complaint.reasons'))),
         ]);
 
         if ($validator->fails()) {
@@ -29,27 +30,44 @@ class ComplaintController extends Controller
         }
 
         $type = $request->input('type','individual' );
+        $sender = $request->input('sender', '');
         $identifier = $request->input('identifier' );
         $reason = urldecode($request->input('reason', ''));
         $reasons = collect(config('complaint.reasons'))->filter(function ($value, $key) use ( $reason,$type ){
             return $value['parent'] == $reason && in_array( $type, $value['type'] );
         });
-        return view('complaint.complaint', ['reason'=>$reason, 'reasons'=>$reasons, 'type'=>$type, 'identifier'=>$identifier]);
+        return view('complaint.complaint', ['reason'=>$reason, 'reasons'=>$reasons, 'type'=>$type, 'identifier'=>$identifier,'sender'=>$sender,]);
     }
 
     public function submitPage( Request $request )
     {
+        $validator = \Validator::make($request->all(), [
+            'sender'=>'required|max:128',
+            'identifier'=>'required|max:128',
+            'type'=>'required|in:"individual","group"|max:200',
+            'reason'=>'required|in:'.join(',', array_keys(config('complaint.reasons'))),
+        ]);
+
+        if ($validator->fails()) {
+            return $this->errorPage($validator->errors()->all());
+        }
         return view('complaint.submit', []);
     }
 
     public function submit( Request $request )
     {
         $request->validate( [
+            'sender'=>'required|max:128',
             'identifier'=>'required|max:128',
             'content'=>'required|max:800',
+            'type'=>'required|in:"individual","group"|max:200',
+            'reason'=>'required|in:'.join(',', array_keys(config('complaint.reasons'))),
         ]);
-        $identifier = $request->input('identifier');
+        $sender = $request->input('sender', '');
+        $identifier = $request->input('identifier', '');
+        $type = $request->input('type', '');
         $content = $request->input('content', '');
+        $reason = $request->input('reason', '');
         $nowTime = time();
 
         $filenames = $request->input('filenames');
@@ -91,9 +109,10 @@ class ComplaintController extends Controller
             }
         }
 
-        $text = date('Y-m-d_H:i:s', $nowTime).' '.rawurlencode($identifier).' '.rawurlencode($content).' '.join('|', $file_paths);
-//        \Log::info( $text );
-        $myfile = file_put_contents(env('COMPLAINT_FILE_PATH').'complaint.txt', $text.PHP_EOL , FILE_APPEND | LOCK_EX);
+        $text = date('Y-m-d_H:i:s', $nowTime).' '.rawurlencode($sender).' '.rawurlencode($identifier).' '.$type.' '.$reason.' '.rawurlencode($content).' '.join('|', $file_paths);
+
+        // log data
+        file_put_contents(env('COMPLAINT_FILE_PATH').'complaint.txt', $text.PHP_EOL , FILE_APPEND | LOCK_EX);
 
         return response()->json(successResult('submit success!'));
     }

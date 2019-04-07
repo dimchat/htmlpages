@@ -6,10 +6,6 @@ return [
             'type'=>['individual'],
             'parent'=>'',
         ],
-        '存在欺诈骗钱行为'=>[
-            'type'=>['individual'],
-            'parent'=>'',
-        ],
         '色情'=>[
             'type'=>['group','individual'],
             'parent'=>'发布不适当内容对我造成骚扰',
@@ -48,6 +44,31 @@ return [
         '其他违规内容'=>[
             'type'=>['individual'],
             'parent'=>'发布不适当内容对我造成骚扰',
+            'solutions'=>[
+                'submit'
+            ],
+        ],
+        '存在欺诈骗钱行为'=>[
+            'type'=>['individual'],
+            'parent'=>'',
+        ],
+        '仿冒他人诈骗骗钱'=>[
+            'type'=>['individual'],
+            'parent'=>'存在欺诈骗钱行为',
+            'solutions'=>[
+                'submit'
+            ],
+        ],
+        '其它诈骗骗钱行为'=>[
+            'type'=>['individual'],
+            'parent'=>'存在欺诈骗钱行为',
+            'solutions'=>[
+                'submit'
+            ],
+        ],
+        '此账号可能被盗用了'=>[
+            'type'=>['individual'],
+            'parent'=>'',
             'solutions'=>[
                 'submit'
             ],
