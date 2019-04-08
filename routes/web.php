@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/support', ['as' => 'support.page', 'uses' => 'IndexController@support']);
 Route::get('/report', ['as' => 'complaint', 'uses' => 'ComplaintController@complaint']);
 Route::get('/report/submit/page', ['as' => 'complaint.submit.page', 'uses' => 'ComplaintController@submitPage']);
 // post image to server
