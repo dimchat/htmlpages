@@ -19,3 +19,29 @@ Route::post('/report/submit', ['as' => 'complaint.submit', 'uses' => 'ComplaintC
 Route::get('/report/submit/success', ['as' => 'complaint.submit.success', 'uses' => 'ComplaintController@submitSuccessPage']);
 
 Route::get('/errors/validationError', ['as' => 'errors.validation.error', 'uses' => 'ComplaintController@validationError']);
+
+Route::post('/{ID}/upload', ['as' => 'ID.upload', 'uses' => 'IndexController@IDUpload'])->where('ID', '[@A-Za-z0-9-_\.]+');
+
+Route::get('/download/{ID}/{filename}', ['as' => 'avatar.ID.filename.ext', 'uses' => 'IndexController@downloadFilename'])
+    ->where([
+        'ID'=>'[@A-Za-z0-9-_\.]+',
+        'filename'=>'[A-Za-z0-9-_\.]+'
+    ]);
+
+Route::get('/avatar/{ID}/{filename}.{ext}', ['as' => 'avatar.ID.filename.ext', 'uses' => 'IndexController@avatarFilename'])
+    ->where([
+        'ID'=>'[@A-Za-z0-9-_\.]+',
+        'filename'=>'[A-Za-z0-9-_]+',
+        'ext'=>'jpg|jpeg|png',
+        ]);
+
+Route::get('/avatar/{ID}.{ext}', ['as' => 'avatar.ID.ext', 'uses' => 'IndexController@avatarIDExt'])
+    ->where([
+        'ID'=>'[@A-Za-z0-9-_\.]+',
+        'ext'=>'jpg|jpeg|png',
+    ]);
+Route::get('/{ID}/avatar.{ext}', ['as' => 'avatar.ID.ext', 'uses' => 'IndexController@IDAvatarExt'])
+    ->where([
+        'ID'=>'[@A-Za-z0-9-_\.]+',
+        'ext'=>'jpg|jpeg|png',
+    ]);

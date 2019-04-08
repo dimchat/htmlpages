@@ -47,6 +47,14 @@ return [
             'driver' => 'local',
             'root' => env('UPLOAD_PATH' ),
         ],
+        'avatars' => [
+            'driver' => 'local',
+            'root' => env('AVATARS_PATH' ),
+        ],
+        'userUploads' => [
+            'driver' => 'local',
+            'root' => env('USER_UPLOAD_PATH' ),
+        ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
