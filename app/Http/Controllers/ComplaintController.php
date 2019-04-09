@@ -7,27 +7,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ComplaintController extends Controller
 {
-    public function errorPage( $messages )
-    {
-        $errorMsg = '';
-        foreach( $messages as $error)
-        {
-            $errorMsg .= $error. ' ';
-        }
-        return view('errors.validationError', ['message'=>$errorMsg]);
-    }
     public function complaint( Request $request )
     {
-        $validator = \Validator::make($request->all(), [
+        $request->validate([
             'sender'=>'required|max:128',
             'identifier'=>'required|max:128',
             'type'=>'required|in:"individual","group"|max:200',
             'reason'=>'in:'.join(',', array_keys(config('complaint.reasons'))),
         ]);
-
-        if ($validator->fails()) {
-            return $this->errorPage($validator->errors()->all());
-        }
 
         $type = $request->input('type','individual' );
         $sender = $request->input('sender', '');
@@ -41,16 +28,13 @@ class ComplaintController extends Controller
 
     public function submitPage( Request $request )
     {
-        $validator = \Validator::make($request->all(), [
+        $request -> validate([
             'sender'=>'required|max:128',
             'identifier'=>'required|max:128',
             'type'=>'required|in:"individual","group"|max:200',
             'reason'=>'required|in:'.join(',', array_keys(config('complaint.reasons'))),
         ]);
 
-        if ($validator->fails()) {
-            return $this->errorPage($validator->errors()->all());
-        }
         return view('complaint.submit', []);
     }
 

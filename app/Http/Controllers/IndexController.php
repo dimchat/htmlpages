@@ -19,22 +19,13 @@ class IndexController extends Controller
         if (!preg_match($p, $ID)) {
             return ['code'=>422,'message'=>'ID format does not match!'];
         }
-        $validator = \Validator::make($request->all(), [
+
+        $request -> validate([
             'file'=>'mimetypes:audio/*,video/*,image/*|max:100000',
             'avatar'=>'image|max:10000',
         ]);
 
         $address = getAddressFromID( $ID );
-
-        if ($validator->fails()) {
-            $errors = $validator->errors()->all();
-            $errorMsg = '';
-            foreach( $errors as $error)
-            {
-                $errorMsg .= $error. ' ';
-            }
-            return ['code'=>412,'message'=>$errorMsg];
-        }
 
         if ($request->hasFile('avatar')) {
             $fileName = md5_file($request->avatar).'.'.$request->avatar->extension();
