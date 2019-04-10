@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
 {
@@ -20,10 +22,18 @@ class IndexController extends Controller
             return ['code'=>422,'message'=>'ID format does not match!'];
         }
 
-        $request -> validate([
-            'file'=>'mimetypes:audio/*,video/*,image/*|max:100000',
+        $validator = Validator::make($request->all(), [
             'avatar'=>'image|max:10000',
+            'file'=> ['max:100000', function($attributes, $value, $fail ){
+                $extension = $value->getClientOriginalExtension();
+                if( !in_array($extension, ['jpg','jpeg','bmp','gif','mp3','mp4']))
+                {
+                    $fail( $attributes.' type is invalid.');
+                }
+            }],
         ]);
+
+        $validator->validate();
 
         $address = getAddressFromID( $ID );
 
@@ -33,7 +43,7 @@ class IndexController extends Controller
             return ['code'=>200,'message'=>'OK','filename'=>$fileName];
         }
         elseif ($request->hasFile('file')) {
-            $fileName = md5_file($request->file).'.'.$request->file->extension();
+            $fileName = md5_file($request->file).'.'.$request->file->getClientOriginalExtension();
             $filePath = $request->file->storeAs($address, $fileName, 'userUploads');
             return ['code'=>200,'message'=>'OK','filename'=>$fileName];
         }
