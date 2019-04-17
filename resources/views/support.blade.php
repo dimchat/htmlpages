@@ -8,6 +8,7 @@
         .intro1{font-size: 24px;margin-top: 50px;}
         .intro1>div{}
         .intro1 .intro2{background-color: #f1f1f1;height: 100%;padding: 20px;}
+        .download h3{margin-bottom: 20px;}
     </style>
     <div class="top">
         <div class="row1">
@@ -52,10 +53,18 @@
         <p>Any question, please contact me (DIM! ID: moky@4DnqXWdTV8wuZgfqSCX9GjE2kNq7HJrUgQ, or search number: 404-969-9527).</p>
         <h2 id="download" style="margin-top: 50px;">Download</h2>
         <hr/>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
+        <div class="row download" style="padding-top: 20px;padding-bottom: 30px;">
+            <div class="col-md-4 text-center">
+                <h3>iOS</h3>
+                <a href="https://itunes.apple.com/cn/app/DIM/id1457157407?mt=8"><img src="/images/app_store.png" style="width: 100%;"/></a></div>
+            <div class="col-md-4 text-center">
+                <h3>Android</h3>
+                <p>Coming soon...</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h3>Qr</h3>
+                <img src="/images/qrcode_image_300.png" style="width: 60%;"/>
+            </div>
         </div>
     </div>
 @stop
