@@ -22,10 +22,17 @@
                 <div class="col-9 col-md-6">
                     <ul class="nav nav-pills nav-fill">
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
+                            <a class="nav-link" href="#contact">{{__('common.contact')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#download">Download</a>
+                            <a class="nav-link" href="#download">{{__('common.download')}}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Language</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{route(\Illuminate\Support\Facades\Route::currentRouteName(), ['locale'=>'en']) }}">English</a>
+                                <a class="dropdown-item" href="{{route(\Illuminate\Support\Facades\Route::currentRouteName(), ['locale'=>'zh']) }}">简体中文</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -34,28 +41,26 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4"><h1 style="margin-top: 66px;">DIM! - Secure Chat</h1></div>
+                <div class="col-md-4"><h1 style="margin-top: 66px;">{{__('common.DIMTitle')}}</h1></div>
                 <div class="col-md-1"></div>
-                <div class="col-md-7" style="line-height: 50px;padding: 60px 0;font-size: 30px;">
-                    This social network chatting client is based on a new protocol designed for instant messaging, which named DIMP(Decentralized Instant Messaging Protocol).
-                </div>
+                <div class="col-md-7" style="line-height: 50px;padding: 60px 0;font-size: 30px;">{{__('common.DIMIntro')}}</div>
             </div>
         </div>
     </div>
     <div class="container">
-        <h2 id="intro" style="margin-top: 50px;">What is DIM?</h2>
+        <h2 id="intro" style="margin-top: 50px;">{{__('common.whatIsDIM')}}</h2>
         <hr/>
         <div class="row intro1">
-            <div class="col-md-4 text-center"><div class="intro2">It generates user accounts in client (not server) and saved the private key in the client, just publish the user ID and public key onto the DIM network.</div></div>
-            <div class="col-md-4 text-center"><div class="intro2">Every user can get your ID & public key, then can verify whether the public key is bound to the ID by the 'Meta Algorithm' in the client (again, not server).</div></div>
-            <div class="col-md-4 text-center"><div class="intro2">The sender must use the receiver's public key to encrypt the message content before sending out, so only the receiver's private key can decrypt it.</div></div>
+            <div class="col-md-4 text-center"><div class="intro2">{{__('common.DIMIntro1')}}</div></div>
+            <div class="col-md-4 text-center"><div class="intro2">{{__('common.DIMIntro2')}}</div></div>
+            <div class="col-md-4 text-center"><div class="intro2">{{__('common.DIMIntro3')}}</div></div>
         </div>
-        <h2 id="contact" style="margin-top: 50px;">Contact</h2>
+        <h2 id="contact" style="margin-top: 50px;">{{__('common.contact')}}</h2>
         <hr/>
-        <p>Any question, please contact me. </p>
-        <p>DIM! ID: moky@4DnqXWdTV8wuZgfqSCX9GjE2kNq7HJrUgQ, or search number: 404-969-9527.</p>
+        <p>{{__('common.contact1')}}</p>
+        <p>{{__('common.contact2')}}</p>
         <p>Email: support@dim.chat</p>
-        <h2 id="download" style="margin-top: 50px;">Download</h2>
+        <h2 id="download" style="margin-top: 50px;">{{__('common.download')}}</h2>
         <hr/>
         <div class="row download" style="padding-top: 20px;padding-bottom: 30px;">
             <div class="col-md-4 text-center">
@@ -63,7 +68,7 @@
                 <a href="https://itunes.apple.com/cn/app/DIM/id1457157407?mt=8"><img src="/images/app_store.png" style="width: 100%;"/></a></div>
             <div class="col-md-4 text-center">
                 <h3>Android</h3>
-                <p>Coming soon...</p>
+                <p>{{__('common.comingSoon')}}</p>
             </div>
             <div class="col-md-4 text-center">
                 <h3>Qr</h3>
