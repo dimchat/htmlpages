@@ -3,8 +3,10 @@
 @section('content')
     <style>
         .top{ background-image: radial-gradient(circle at 30% 60%, #667084, #383a46);color: #FFF;}
-        .top a{color:#FFF;}
-        .top .row1{line-height: 80px;background-color: rgba(255, 255, 255, 0.1);}
+        .top .nav-item{padding: 20px 0px;}
+        .top .nav-pills>li>a{color:#FFF;}
+        .top.nav-pills .nav-link.active, .nav-pills .show>.nav-link{background-color: #FFF;color: #383a46;}
+        .top .row1{line-height: 40px;background-color: rgba(255, 255, 255, 0.1);}
         .intro1{font-size: 24px;margin-top: 50px;}
         .intro1>div{}
         .intro1 .intro2{background-color: #f1f1f1;height: 100%;padding: 20px;}
@@ -50,7 +52,9 @@
         </div>
         <h2 id="contact" style="margin-top: 50px;">Contact</h2>
         <hr/>
-        <p>Any question, please contact me (DIM! ID: moky@4DnqXWdTV8wuZgfqSCX9GjE2kNq7HJrUgQ, or search number: 404-969-9527).</p>
+        <p>Any question, please contact me. </p>
+        <p>DIM! ID: moky@4DnqXWdTV8wuZgfqSCX9GjE2kNq7HJrUgQ, or search number: 404-969-9527.</p>
+        <p>Email: support@dim.chat</p>
         <h2 id="download" style="margin-top: 50px;">Download</h2>
         <hr/>
         <div class="row download" style="padding-top: 20px;padding-bottom: 30px;">
