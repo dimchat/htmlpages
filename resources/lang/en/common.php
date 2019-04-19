@@ -12,4 +12,5 @@ return [
     'contact1' =>'Any question, please contact me.',
     'contact2' => 'DIM! ID: moky@4DnqXWdTV8wuZgfqSCX9GjE2kNq7HJrUgQ, or search number: 404-969-9527.',
     'comingSoon' => 'Coming soon...',
+    'terms'=>'Terms',
 ];

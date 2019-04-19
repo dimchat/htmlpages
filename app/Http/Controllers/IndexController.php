@@ -15,6 +15,11 @@ class IndexController extends Controller
         return view('support' );
     }
 
+    public function terms( Request $request )
+    {
+        return view('terms' );
+    }
+
     public function IDUpload( $ID, Request $request )
     {
         $p = '/(^[A-Za-z0-9][A-Za-z0-9-_\.]*@[A-Za-z0-9]+$)|(^[A-Za-z0-9]+$)/';

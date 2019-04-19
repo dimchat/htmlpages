@@ -12,4 +12,5 @@ return [
     'contact1' =>'如果有什么问题, 欢迎与我联系.',
     'contact2' => 'DIM! ID: moky@4DnqXWdTV8wuZgfqSCX9GjE2kNq7HJrUgQ, 或者搜索DIM账号: 404-969-9527.',
     'comingSoon' => '即将上线...',
+    'terms'=>'用户协议',
 ];

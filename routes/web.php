@@ -11,6 +11,7 @@
 |
 */
 Route::get('/support', ['as' => 'support.page', 'uses' => 'IndexController@support']);
+Route::get('/terms', ['as' => 'terms.page', 'uses' => 'IndexController@terms']);
 Route::get('/report', ['as' => 'complaint', 'uses' => 'ComplaintController@complaint']);
 Route::get('/report/submit/page', ['as' => 'complaint.submit.page', 'uses' => 'ComplaintController@submitPage']);
 // post image to server
