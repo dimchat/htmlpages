@@ -31,7 +31,7 @@ class IndexController extends Controller
             'avatar'=>'image|max:10000',
             'file'=> ['max:100000', function($attributes, $value, $fail ){
                 $extension = $value->getClientOriginalExtension();
-                if( !in_array($extension, ['jpg','jpeg','bmp','gif','mp3','mp4']))
+                if( !in_array($extension, ['jpg', 'jpeg', 'bmp', 'gif', 'mp3', 'mp4', 'amr']))
                 {
                     $fail( $attributes.' type is invalid.');
                 }
