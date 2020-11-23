@@ -91,7 +91,8 @@ class IndexController extends Controller
         }
         $type = Storage::disk('avatars')->mimeType($filePath);
         $file = Storage::disk('avatars')->get($filePath);
-        return Response::make($file, 200)->header("Content-Type", $type);
+        return Response::make($file, 200)->header("Content-Type", $type)
+            ->header("Content-Length", Storage::disk('avatars')->size($filePath));
     }
 
     public function avatarIDExt( $ID, $ext )
